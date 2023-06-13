@@ -17,6 +17,4 @@ Or I could've done, to print the lowercased message when running node lowercase.
 const result = transform("WHY ARE YOU SHOUTING?", lowercaseMessage);
 
 consol.log(result);
-
-*\
-
+*/
