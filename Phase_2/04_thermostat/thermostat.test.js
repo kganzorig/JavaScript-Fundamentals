@@ -29,5 +29,32 @@ describe('Thermostat', () => {
         expect(thermostat.getTemperature()).toEqual(10);
     });
 
-    it
- });
+    it('when power saving mode is on, the temperature does not exceed the maximum of', () => {
+        thermostat.setPowerSavingMode(true); 
+        for (let i = thermostat.temperature; i < thermostat.maxPSMonTemperature; i++) {
+            thermostat.up(); 
+        }
+        expect(thermostat.getTemperature()).toEqual(25);
+
+
+        /*
+        thermostat.temperature = thermostat.maxPSMonTemperature;
+        expect(thermostat.getTemperature()).toEqual(25);
+
+        */
+    })
+
+    it('when power saving mode is off, the max temperature is 32', () => {
+        thermostat.setPowerSavingMode(false);
+        for (let i = thermostat.temperature; i < thermostat.maxPSMoffTemperature; i++) {
+            thermostat.up();
+        }
+        expect(thermostat.getTemperature()).toEqual(32);
+        });
+
+    it('resets the temperature to 20 when the reset method is used', () => {
+        thermostat.down();
+        thermostat.reset();
+        expect(thermostat.getTemperature()).toEqual(20);
+    });
+});        
